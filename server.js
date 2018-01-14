@@ -10,7 +10,7 @@ var constants = require('./util/constants');
 
 var app = express();
 
-var port = constants.LISTENING_PORT;
+var port = process.env.PORT || constants.LISTENING_PORT;
 
 app.listen(port, function () {
   console.log('App is running on port ', port);
