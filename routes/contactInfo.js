@@ -3,14 +3,14 @@ var router = express.Router();
 var mongojs = require('mongojs');
 var constants = require('../util/constants');
 
-var db = mongojs(constants.DB_PARKING, ['faqs']);
+var db = mongojs(constants.DB_PARKING, ['contactInfo']);
 
-router.get("/faqs", function (req, res, next) {
-  db.faqs.find(function (err, faqs) {
+router.get("/contactInfo", function (req, res, next) {
+  db.contactInfo.find(function (err, contactInfo) {
     if (err) {
       res.send(err);
     } else {
-      res.json(faqs);
+      res.json(contactInfo);
     }
   })
 });

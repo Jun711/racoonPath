@@ -6,6 +6,7 @@ var index = require('./routes/index');
 var bookings = require('./routes/bookings');
 var parkingSpots = require('./routes/parkingSpots');
 var faqs = require('./routes/faqs');
+var contactInfo = require('./routes/contactInfo');
 var constants = require('./util/constants');
 
 var app = express();
@@ -31,3 +32,4 @@ app.use('/', index);
 app.use('/api', bookings);
 app.use('/api', parkingSpots);
 app.use('/api', faqs);
+app.use('/api', contactInfo);
