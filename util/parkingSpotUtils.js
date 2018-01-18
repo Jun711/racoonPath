@@ -35,12 +35,12 @@ var processText = function (text) {
 
       if (currentText && currentText.startsWith('m-f 9am')) {
         if (parseRate) {
-          weekdayOffice.rate = currentText.substr(-4, 4).trim();
+          weekdayOffice.rate = currentText.substr(-4, 4);
         } else if (parseLimit) {
           if (currentText.includes(constants.NO_TIME_LIMIT)) {
             weekdayOffice.limit = constants.NO_TIME_LIMIT_TEXT;
           } else {
-            weekdayOffice.limit = currentText.substr(-4, 4).trim();
+            weekdayOffice.limit = currentText.substr(-4, 1);
           }
         }
         continue;
@@ -53,7 +53,7 @@ var processText = function (text) {
           if (currentText.includes(constants.NO_TIME_LIMIT)) {
             weekdayAfterOffice.limit = constants.NO_TIME_LIMIT_TEXT;
           } else {
-            weekdayAfterOffice.limit = currentText.substr(-4, 4);
+            weekdayAfterOffice.limit = currentText.substr(-4, 1);
           }
         }
         continue;
@@ -66,7 +66,7 @@ var processText = function (text) {
           if (currentText.includes(constants.NO_TIME_LIMIT)) {
             satOffice.limit = constants.NO_TIME_LIMIT_TEXT;
           } else {
-            satOffice.limit = currentText.substr(-4, 4);
+            satOffice.limit = currentText.substr(-4, 1);
           }
         }
         continue;
@@ -79,7 +79,7 @@ var processText = function (text) {
           if (currentText.includes(constants.NO_TIME_LIMIT)) {
             satAfterOffice.limit = constants.NO_TIME_LIMIT_TEXT;
           } else {
-            satAfterOffice.limit = currentText.substr(-4, 4);
+            satAfterOffice.limit = currentText.substr(-4, 1);
           }
         }
         continue;
@@ -92,7 +92,7 @@ var processText = function (text) {
           if (currentText.includes(constants.NO_TIME_LIMIT)) {
             sunOffice.limit = constants.NO_TIME_LIMIT_TEXT;
           } else {
-            sunOffice.limit = currentText.substr(-4, 4);
+            sunOffice.limit = currentText.substr(-4, 1);
           }
         }
         continue;
@@ -105,7 +105,7 @@ var processText = function (text) {
           if (currentText.includes(constants.NO_TIME_LIMIT)) {
             sunAfterOffice.limit = constants.NO_TIME_LIMIT_TEXT;
           } else {
-            sunAfterOffice.limit = currentText.substr(-4, 4);
+            sunAfterOffice.limit = currentText.substr(-4, 1);
           }
         }
         continue;

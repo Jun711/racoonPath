@@ -44,13 +44,13 @@ describe('processParkingSpotDescription test', function () {
     expect(processedParkingSpots[1].properties).to.deep.include({
       [constants.WEEKDAY_9_6]: {
         "rate": "2.50",
-        "limit": "2 hr"
+        "limit": "2"
       }
     });
     expect(processedParkingSpots[1].properties).to.deep.include({
       [constants.SAT_6_10]: {
         "rate": "2.00",
-        "limit": "1 hr"
+        "limit": "1"
       }
     });
     expect(processedParkingSpots[1].properties).to.deep.include({

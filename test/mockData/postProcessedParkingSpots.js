@@ -68,7 +68,7 @@ exports.parkingSpots = [
       "stroke-width": 2,
       "weekdayOffice": {
         "rate": "2.50",
-        "limit": "2 hr"
+        "limit": "2"
       },
       "weekdayAfterOffice": {
         "rate": "2.00",
@@ -80,7 +80,7 @@ exports.parkingSpots = [
       },
       "satAfterOffice": {
         "rate": "2.00",
-        "limit": "1 hr"
+        "limit": "1"
       },
       "sunOffice": {
         "rate": "2.50",
