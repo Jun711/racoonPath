@@ -1,49 +1,131 @@
-var processText = function (text) {
-  let textArr = text.split('<br>');
-  let weekdayOfficeHourRate = '0';
-  let weekdayAfterOfficeRate = '0';
-  let satOfficeHourRate = '0';
-  let satAfterOfficeRate = '0';
-  let sunOfficeHourRate = '0';
-  let sunAfterOfficeRate = '0';
-  let freeParking = '0';
-  let doParsing = false;
-  let parseDone = false;
+var constants = require('./constants');
 
-  for (let i = 0; i < textArr.length; i++) {
+var processText = function (text) {
+  var textArr = text.split('<br>');
+  var weekdayOfficeHourRate = '0';
+  var weekdayAfterOfficeRate = '0';
+  var satOfficeHourRate = '0';
+  var satAfterOfficeRate = '0';
+  var sunOfficeHourRate = '0';
+  var sunAfterOfficeRate = '0';
+  var weekdayOfficeHourLimit = '0';
+  var weekdayAfterOfficeLimit = '0';
+  var satOfficeHourLimit = '0';
+  var satAfterOfficeLimit = '0';
+  var sunOfficeHourLimit = '0';
+  var sunAfterOfficeLimit = '0';
+  var freeParking = '0';
+  var parseRate = false;
+  var parseLimit = false;
+  var parseDone = false;
+  console.log('textArr.length: ', textArr.length)
+  for (var i = 0; i < textArr.length; i++) {
     if (textArr[i] && !textArr[i].endsWith('\n'))
       textArr[i] += '\n';
 
-    if (!parseDone && textArr[i] && textArr[i].startsWith('Rates'))
-      doParsing = true;
+    if (!parseDone && textArr[i] && textArr[i].startsWith(constants.RATES))
+      parseRate = true;
 
-    if (textArr[i] && textArr[i].startsWith('Effect')) {
-      parseDone = true;
-      doParsing = false;
+    if (!parseDone && textArr[i] && textArr[i].startsWith(constants.EFFECT)) {
+      parseLimit = true;
+      parseRate = false;
     }
 
-    if (doParsing) {
-      if (textArr[i] && textArr[i].toLowerCase().startsWith('m-f 9am'))
-        weekdayOfficeHourRate = textArr[i].substr(-5, 5).trim();
+    if (textArr[i] && textArr[i].startsWith(constants.PARKING_PROHIBITIONS)) {
+      parseLimit = false;
+      parseDone = true;
+    }
 
-      if (textArr[i] && textArr[i].toLowerCase().startsWith('m-f 6pm'))
-        weekdayAfterOfficeRate = textArr[i].substr(-5, 5).trim();
+    if (!parseDone) {
+      var currentText = textArr[i].toLowerCase().trim();
 
-      if (textArr[i] && textArr[i].toLowerCase().startsWith('sat 9am'))
-        satOfficeHourRate = textArr[i].substr(-5, 5).trim();
+      if (currentText && currentText.startsWith('m-f 9am')) {
+        if (parseRate) {
+          weekdayOfficeHourRate = currentText.substr(-4, 4).trim();
+        } else if (parseLimit) {
+          if (currentText.includes(constants.NO_TIME_LIMIT)) {
+            console.log('currentText: ' + currentText)
+            
+            console.log('constants.NO_TIME_LIMIT_TEXT: ' + constants.NO_TIME_LIMIT_TEXT)
 
-      if (textArr[i] && textArr[i].toLowerCase().startsWith('sat 6pm'))
-        satAfterOfficeRate = textArr[i].substr(-5, 5).trim();
+            weekdayOfficeHourLimit = constants.NO_TIME_LIMIT_TEXT;
+            console.log('weekdayOfficeHourLimit: ' + weekdayOfficeHourLimit)
+          } else {
+            weekdayOfficeHourLimit = currentText.substr(-4, 4).trim();
+          }
+        }
+        continue;
+      }
 
-      if (textArr[i] && textArr[i].toLowerCase().startsWith('sun 9am'))
-        sunOfficeHourRate = textArr[i].substr(-5, 5).trim();
+      if (currentText && currentText.startsWith('m-f 6pm')) {
+        if (parseRate) {
+          weekdayAfterOfficeRate = currentText.substr(-4, 4);
+        } else if (parseLimit) {
+          if (currentText.includes(constants.NO_TIME_LIMIT)) {
+            weekdayAfterOfficeLimit = constants.NO_TIME_LIMIT_TEXT;
+          } else {
+            weekdayAfterOfficeLimit = currentText.substr(-4, 4);
+          }
+        }
+        continue;
+      }
 
-      if (textArr[i] && textArr[i].toLowerCase().startsWith('sun 6pm'))
-        sunAfterOfficeRate = textArr[i].substr(-5, 5).trim();
+      if (currentText && currentText.startsWith('sat 9am')) {
+        if (parseRate) {
+          satOfficeHourRate = currentText.substr(-4, 4);
+        } else if (parseLimit) {
+          if (currentText.includes(constants.NO_TIME_LIMIT)) {
+            satOfficeHourLimit = constants.NO_TIME_LIMIT_TEXT;
+          } else {
+            satOfficeHourLimit = currentText.substr(-4, 4);
+          }
+        }
+        continue;
+      }
+
+      if (currentText && currentText.startsWith('sat 6pm')) {
+        if (parseRate) {
+          satAfterOfficeRate = currentText.substr(-4, 4);
+        } else if (parseLimit) {
+          if (currentText.includes(constants.NO_TIME_LIMIT)) {
+            satAfterOfficeLimit = constants.NO_TIME_LIMIT_TEXT;
+          } else {
+            satAfterOfficeLimit = currentText.substr(-4, 4);
+          }
+        }
+        continue;
+      }
+
+      if (currentText && currentText.startsWith('sun 9am')) {
+        if (parseRate) {
+          sunOfficeHourRate = currentText.substr(-4, 4);
+        } else if (parseLimit) {
+          if (currentText.includes(constants.NO_TIME_LIMIT)) {
+            sunOfficeHourLimit = constants.NO_TIME_LIMIT_TEXT;
+          } else {
+            sunOfficeHourLimit = currentText.substr(-4, 4);
+          }
+        }
+        continue;
+      }
+
+      if (currentText && currentText.startsWith('sun 6pm')) {
+        if (parseRate) {
+          sunAfterOfficeRate = currentText.substr(-4, 4);
+        } else if (parseLimit) {
+          if (currentText.includes(constants.NO_TIME_LIMIT)) {
+            sunAfterOfficeLimit = constants.NO_TIME_LIMIT_TEXT;
+          } else {
+            sunAfterOfficeLimit = currentText.substr(-4, 4);
+          }
+        }
+        continue;
+      }
     }
   }
 
-  let processedDescription = {
+  console.log('processedDescription weekdayOfficeHourLimit: ', weekdayOfficeHourLimit)
+  var processedDescription = {
     description: textArr.join('').trim(),
     properties: {
       weekdayOfficeHourRate,
@@ -52,6 +134,12 @@ var processText = function (text) {
       satAfterOfficeRate,
       sunOfficeHourRate,
       sunAfterOfficeRate,
+      weekdayOfficeHourLimit,
+      weekdayAfterOfficeLimit,
+      satOfficeHourLimit,
+      satAfterOfficeLimit,
+      sunOfficeHourLimit,
+      sunAfterOfficeLimit,
       freeParking
     }
   }
