@@ -17,19 +17,34 @@ exports.parkingSpots = [
       "stroke": "#fde4ff",
       "stroke-opacity": 1,
       "stroke-width": 2,
-      "weekdayOfficeHourRate": "2.50",
-      "weekdayAfterOfficeRate": "2.00",
-      "satOfficeHourRate": "2.50",
-      "satAfterOfficeRate": "2.00",
-      "sunOfficeHourRate": "2.50",
-      "sunAfterOfficeRate": "2.00",
-      "weekdayOfficeHourLimit": "no time limit",
-      "weekdayAfterOfficeLimit": "no time limit",
-      "satOfficeHourLimit": "no time limit",
-      "satAfterOfficeLimit": "no time limit",
-      "sunOfficeHourLimit": "no time limit",
-      "sunAfterOfficeLimit": "no time limit",
-      "freeParking": "0"
+      "weekdayOffice": {
+        "rate": "2.50",
+        "limit": "no time limit"
+      },
+      "weekdayAfterOffice": {
+        "rate": "2.00",
+        "limit": "no time limit"
+      },
+      "satOffice": {
+        "rate": "2.50",
+        "limit": "no time limit"
+      },
+      "satAfterOffice": {
+        "rate": "2.00",
+        "limit": "no time limit"
+      },
+      "sunOffice": {
+        "rate": "2.50",
+        "limit": "no time limit"
+      },
+      "sunAfterOffice": {
+        "rate": "2.00",
+        "limit": "no time limit"
+      },
+      "freeParking": {
+        "rate": "0",
+        "limit": "until 9am"
+      }
     },
     "id": "9013"
   },
@@ -51,19 +66,34 @@ exports.parkingSpots = [
       "stroke": "#fde4ff",
       "stroke-opacity": 1,
       "stroke-width": 2,
-      "weekdayOfficeHourRate": "2.50",
-      "weekdayAfterOfficeRate": "2.00",
-      "satOfficeHourRate": "2.50",
-      "satAfterOfficeRate": "2.00",
-      "sunOfficeHourRate": "2.50",
-      "sunAfterOfficeRate": "2.00",
-      "weekdayOfficeHourLimit": "2 hr",
-      "weekdayAfterOfficeLimit": "no time limit",
-      "satOfficeHourLimit": "no time limit",
-      "satAfterOfficeLimit": "1 hr",
-      "sunOfficeHourLimit": "no time limit",
-      "sunAfterOfficeLimit": "no time limit",
-      "freeParking": "0"
+      "weekdayOffice": {
+        "rate": "2.50",
+        "limit": "2 hr"
+      },
+      "weekdayAfterOffice": {
+        "rate": "2.00",
+        "limit": "no time limit"
+      },
+      "satOffice": {
+        "rate": "2.50",
+        "limit": "no time limit"
+      },
+      "satAfterOffice": {
+        "rate": "2.00",
+        "limit": "1 hr"
+      },
+      "sunOffice": {
+        "rate": "2.50",
+        "limit": "no time limit"
+      },
+      "sunAfterOffice": {
+        "rate": "2.00",
+        "limit": "no time limit"
+      },
+      "freeParking": {
+        "rate": "0",
+        "limit": "until 9am"
+      }
     },
     "id": "9013"
   }
