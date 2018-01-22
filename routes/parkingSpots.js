@@ -3,7 +3,7 @@ var router = express.Router();
 var mongojs = require('mongojs');
 var constants = require('../util/constants');
 
-var db = mongojs(constants.DB_PARKING, ['parkingSpots']);
+var db = mongojs(constants.DB_PARKING, ['parkingMeters']);
 
 var parkingSpotUtils = require('../util').ParkingSpots;
 
@@ -21,13 +21,10 @@ router.get('/parkingSpots', function (req, res, next) {
       }
     }
   }, function (err, parkingSpots) {
-
-    var processedParkingSpots = parkingSpotUtils.processParkingSpotDescription(parkingSpots);
-
     if (err) {
       res.send(err);
     } else {
-      res.send(processedParkingSpots)
+      res.send(parkingSpots)
     }
   });
 })
