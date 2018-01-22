@@ -9,8 +9,8 @@ var parkingSpotUtils = require('../util').ParkingSpots;
 
 // get nearby drivers within a radius
 router.get('/parkingSpots', function (req, res, next) {
-  db.parkingSpots.createIndex({'geometry': '2dsphere'});
-  db.parkingSpots.find({
+  db.parkingMeters.createIndex({'geometry': '2dsphere'});
+  db.parkingMeters.find({
     'geometry': {
       '$near': {
         '$geometry': {
