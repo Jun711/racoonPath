@@ -29,7 +29,6 @@ app.use(bodyParser.urlencoded({extended: true}));
 
 // routes
 app.use('/', index);
-app.use('/api', bookings);
 app.use('/api', parkingSpots);
 app.use('/api', faqs);
 app.use('/api', contactInfo);
