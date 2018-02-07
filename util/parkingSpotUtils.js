@@ -116,13 +116,13 @@ var processText = function (text) {
   var processedDescription = {
     description: textArr.join('').trim(),
     properties: {
-      weekdayOffice,
-      weekdayAfterOffice,
-      satOffice,
-      satAfterOffice,
-      sunOffice,
-      sunAfterOffice,
-      freeParking
+      weekdayOffice: weekdayOffice,
+      weekdayAfterOffice: weekdayAfterOffice,
+      satOffice: satOffice,
+      satAfterOffice: satAfterOffice,
+      sunOffice: sunOffice,
+      sunAfterOffice: sunAfterOffice,
+      freeParking: freeParking
     }
   }
 
