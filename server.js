@@ -3,12 +3,11 @@ var path = require('path');
 var bodyParser = require('body-parser');
 
 var index = require('./routes/index');
-var bookings = require('./routes/bookings');
 var parkingSpots = require('./routes/parkingSpots');
 var faqs = require('./routes/faqs');
 var contactInfo = require('./routes/contactInfo');
 var constants = require('./util/constants');
-
+var helmet = require('helmet')
 var app = express();
 
 var port = process.env.PORT || constants.LISTENING_PORT;
@@ -22,10 +21,12 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 app.engine('html', require('ejs').renderFile);
 
+// use helmet
+app.use(helmet());
+
 // body parser middleware
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
-
 
 // routes
 app.use('/', index);
