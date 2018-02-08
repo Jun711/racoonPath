@@ -5,7 +5,7 @@ var constants = require('../util/constants');
 
 var db = mongojs(constants.DB_PARKING, ['contactInfo']);
 
-router.get("/contactInfo", function (req, res, next) {
+router.get('/contactInfo', function (req, res) {
   db.contactInfo.find(function (err, contactInfo) {
     if (err) {
       res.send(err);

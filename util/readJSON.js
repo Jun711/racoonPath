@@ -11,10 +11,11 @@ var parkingSpots;
 parkingSpots = JSON.parse(fs.readFileSync('../test/mockData/parkingMeters.json', 'utf8'));
 var processedParkingSpots = parkingSpotUtils.processParkingSpotDescription(parkingSpots)
 
-fs.writeFile('../test/mockData/processedParkingMeters.json', JSON.stringify(processedParkingSpots, null, 2), (err) => {
-    if (err) {
-        console.error(err);
-        return;
-    };
-    console.log('File has been created');
+fs.writeFile('../test/mockData/processedParkingMeters.json', JSON.stringify(processedParkingSpots, null, 2), function (err) {
+  if (err) {
+    console.error(err);
+    return;
+  }
+  ;
+  console.log('File has been created');
 });

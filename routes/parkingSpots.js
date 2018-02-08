@@ -5,10 +5,8 @@ var constants = require('../util/constants');
 
 var db = mongojs(constants.DB_PARKING, ['parkingMeters']);
 
-var parkingSpotUtils = require('../util').ParkingSpots;
-
 // get nearby drivers within a radius
-router.get('/parkingSpots', function (req, res, next) {
+router.get('/parkingSpots', function (req, res) {
   db.parkingMeters.createIndex({'geometry': '2dsphere'});
   db.parkingMeters.find({
     'geometry': {
@@ -27,6 +25,6 @@ router.get('/parkingSpots', function (req, res, next) {
       res.send(parkingSpots)
     }
   });
-})
+});
 
 module.exports = router;
