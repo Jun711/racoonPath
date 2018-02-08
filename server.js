@@ -7,7 +7,9 @@ var parkingSpots = require('./routes/parkingSpots');
 var faqs = require('./routes/faqs');
 var contactInfo = require('./routes/contactInfo');
 var constants = require('./util/constants');
-var helmet = require('helmet')
+var helmet = require('helmet');
+
+
 var app = express();
 
 var port = process.env.PORT || constants.LISTENING_PORT;
@@ -15,6 +17,20 @@ var port = process.env.PORT || constants.LISTENING_PORT;
 app.listen(port, function () {
   console.log('App is running on port ', port);
 })
+
+var https_redirect = function(req, res, next) {
+  if (process.env.NODE_ENV === 'production') {
+    if (req.headers['x-forwarded-proto'] != 'https') {
+      return res.redirect('https://' + req.headers.host + req.url);
+    } else {
+      return next();
+    }
+  } else {
+    return next();
+  }
+};
+
+app.use(https_redirect);
 
 // views templating engine
 app.set('views', path.join(__dirname, 'views'));
